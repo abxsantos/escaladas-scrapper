@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    volumes:
+      - .:/home/docker
+
+  tests:
+    container_name: http-utils-test
+    image: abxsantos/multitox
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: sh scripts/run-tox.sh
